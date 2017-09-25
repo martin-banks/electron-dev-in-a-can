@@ -7,6 +7,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const mkdirp = require('mkdirp')
 
 const app = document.querySelector('#app')
 
@@ -24,11 +25,15 @@ fs.readdir(readThis, (err, res) => {
 /* eslint-disable */
 function handleClick(e) {
 	console.log(e)
-	if (e.target.nodeName.toLowerCase() === 'button') {
+	const { target } = e
+	const newDir = target.textContent
+	const prevDir = readThis
+	if (e.target.getAttribute('data-type') === 'newdir') {
+		console.log('making dir in', prevDir)
+		mkdirp(`${prevDir}/foo`, err => console.log(err || 'folder created'))
+		return
+	} else if (e.target.nodeName.toLowerCase() === 'button') {
 		// const newDir = e.target.getAttribute('data-dir')
-		const { target } = e
-		const newDir = target.textContent
-		const prevDir = readThis
 		readThis = target.getAttribute('data-type') === 'breadcrumb' ? target.getAttribute('data-dir') : path.join(readThis, newDir)
 
 		fs.readdir(readThis, (err, res) => {
@@ -49,7 +54,11 @@ function handleClick(e) {
 				
 				app.innerHTML = `<h4>${breadcrumb.map(b => `<button data-type="breadcrumb" data-dir="${b}">${b.split('/')[b.split('/').length - 1]}</button>`).join(' / ')}</h4>
 				<div class="buttons">
-				${dirs.map(r => `<button data-dir="${r}">${r}</button>`).join('\n')}</div>`
+					${dirs.map(r => `<button data-dir="${r}">${r}</button>`).join('\n')}
+				</div>
+				<section>
+					<button data-type="newdir">new dir</button>
+				</section>`
 			}
 		})
 	}
