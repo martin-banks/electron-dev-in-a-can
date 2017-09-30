@@ -1,0 +1,27 @@
+{
+  "name": "electron-dev-in-a-can",
+  "version": "1.0.0",
+  "description": "Electron for creating and building simple web apps",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . devinacan --platform=darwin --arch=x64 --version=1.0.0 --overwrite"
+  },
+  "repository": "https://github.com/martin-banks/electron-dev-in-a-can",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.6.2",
+    "electron-packager": "^9.1.0"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
+}

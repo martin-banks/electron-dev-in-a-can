@@ -8,19 +8,28 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
+const { dialog } = require('electron').remote
+const { ipcRenderer } = require('electron')
+
+
 
 const app = document.querySelector('#app')
+// dialog.showOpenDialog(mainWindow, {properties: ['openDirectory']}, filePaths => console.log(filePaths))
 
 function getUserHome() {
   return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 }
+console.log('env', process.env)
+
 // app.innerHTML = getUserHome()
 let readThis = getUserHome()
-fs.readdir(readThis, (err, res) => {
-	console.log(res)
-	const dirs = res.filter(x => x[0] !== '.')
-	app.innerHTML = `${dirs.map(r => `<button data-dir="${r}">${r}</button>`).join('\n')}`
-})
+// fs.readdir(readThis, (err, res) => {
+// 	console.log(res)
+// 	const dirs = res.filter(x => x[0] !== '.')
+// 	app.innerHTML = `${dirs.map(r => `<button data-dir="${r}">${r}</button>`).join('\n')}`
+// })
+
+
 
 /* eslint-disable */
 function handleClick(e) {
@@ -56,7 +65,7 @@ function handleClick(e) {
 				<div class="buttons">
 					${dirs.map(r => `<button data-dir="${r}">${r}</button>`).join('\n')}
 				</div>
-				<section>
+				<section style="position: fixed; display: block; bottom: 0; left: 0; width: 100%; padding: 16px; background: #e2e2e2">
 					<button data-type="newdir">new dir</button>
 				</section>`
 			}
@@ -66,3 +75,11 @@ function handleClick(e) {
 
 app.addEventListener('click', handleClick)
 
+document.querySelector('#openDir').addEventListener('click', function(e) {
+	ipcRenderer.send('openstuff')
+})
+document.querySelector('#dostuff').addEventListener('click', function(e) {
+	ipcRenderer.send('dostuff', ['magick', 'my_new_folder'])
+})
+
+ipcRenderer.on('reply', (e, arg) => window.alert('reply:' + arg))
