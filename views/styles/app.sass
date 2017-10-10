@@ -1,0 +1,165 @@
+
+body
+	position: relative
+	font-family: 'Roboto', 'SF', sans-serif
+	background-position: center
+	background: radial-gradient(#ccc, #ccc 30%, rgba(0,0,0, 0.3) 25%) fixed
+	background-color: #ccc
+	background-size: 8px 8px
+	padding: 100px
+	margin: 0
+	z-index: 1
+	*
+		box-sizing: border-box
+
+.error
+	&__404
+		h1
+			color: white
+			text-shadow: 0 2px 8px rgba(0,0,0, 1)
+
+.background__gradient
+	position: fixed
+	top: 0
+	left: 0
+	width: 100vw
+	height: 100vh
+	z-index: -1
+	background: linear-gradient(45deg, rgba(magenta, 0.3), rgba(cyan, 0.6))
+
+.card
+	position: relative
+	padding: 24px
+	padding-bottom: 72px
+	background: #fff
+	border-radius: 8px
+	// top: 100px
+	left: 50%
+	transform: translateX(-50%)
+	max-width: 600px
+	box-shadow: 0 12px 32px -8px rgba(0,0,0, 1)
+	overflow: hidden
+
+h1
+	margin: 0 auto 40px auto
+
+form *
+	display: block
+	margin: 0 auto
+	text-align: left
+
+label
+	margin-bottom: 16px
+
+input, textarea
+	margin-bottom: 24px
+	text-align: left
+	width: 100%
+	border: solid 1px #ccc
+	border-radius: 4px
+	padding: 16px
+
+textarea
+	min-height: 200px
+	resize: vertical
+
+.link
+	&__preview
+		position: relative
+		display: flex
+		margin-bottom: 8px
+		a 
+			flex: 1
+		form: 
+			flex: 1
+
+.button
+	transition: all 300ms
+	text-align: right
+	font-size: 16px
+	margin: 0
+	position: absolute
+	border: none
+	&__submit
+		bottom: 0
+		left: 0
+		border-radius: 0
+		color: gold
+		background: #333
+		&:hover
+			background: gold
+			color: #000
+	&__delete
+		position: absolute
+		right: 0
+		top: 0
+		background: #333
+		color: #fff
+		width: auto
+		max-width: 120px
+		padding: 0 16px
+		height: 100%
+		flex: 1
+		border-radius: 4px
+		&:hover
+			background: red
+			*
+				color: #fff
+
+
+ul
+	padding: 0
+
+a
+	transition: all 300ms
+	display: block
+	padding: 8px 16px
+	border: solid 1px #e2e2e2
+	border-radius: 8px
+	color: black
+	text-decoration: none
+	// margin-bottom: 8px
+	&:first-letter
+		text-transform: uppercase
+	&:hover
+		background-color: gold
+		border-color: gold
+		// transform: scale(1.03)
+
+
+.text
+	&__caps
+		text-transform: uppercase
+
+
+
+.nav
+	&__container
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		background: #222
+		padding: 0 32px 
+		margin: 0
+	&__item
+		display: inline-block
+		border: none
+		color: #fff
+		margin: 0
+		border-radius: 0
+		padding: 12px 32px
+		&:hover
+			*
+				color: #000
+
+	// &__icon
+	// 	padding-right: 16px
+
+i.fa
+	margin-right: 8px
+	color: gold
+	display: inline-block
+
+span
+	display: inline-block

@@ -1,0 +1,13 @@
+extends _layout.pug
+
+block content
+	div.card
+		h1 Embed previewer
+		ul
+			each opt in options
+				div.link.link__preview
+					a(href=opt.replace(' ', '-') id="testid" value="somelinkvalue") #{opt}
+		a(id="sometesterlink" href='./404.pug') 404 pug page?
+	
+block scripts
+	script(src="../renderer.js")

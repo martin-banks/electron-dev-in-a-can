@@ -1,0 +1,6 @@
+mixin nav(nav)
+	ul.nav.nav__container
+		each item in nav
+			a(href=`${item.path}` class="nav nav__item")
+				i(class=`fa fa-${item.icon} nav__icon` aria-hidden="true")
+				span= item.slug

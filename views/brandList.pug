@@ -1,0 +1,12 @@
+extends _layout.pug
+
+block content
+	div.card
+		if id === '_trash'
+			h1 Trashed projects
+		unless id === '_trash'
+			h1 Choose a brand
+		ul
+			each brand in brands
+				div.link.link__preview
+					a(href=`/preview/${id}/${brand}` class="text__caps")= brand

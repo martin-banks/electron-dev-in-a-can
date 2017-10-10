@@ -73,13 +73,24 @@ function handleClick(e) {
 	}
 }
 
-app.addEventListener('click', handleClick)
+// app.addEventListener('click', handleClick)
 
-document.querySelector('#openDir').addEventListener('click', function(e) {
-	ipcRenderer.send('openstuff')
-})
-document.querySelector('#dostuff').addEventListener('click', function(e) {
-	ipcRenderer.send('dostuff', ['magick', 'my_new_folder'])
-})
+// document.querySelector('#openDir').addEventListener('click', function(e) {
+// 	ipcRenderer.send('openstuff')
+// })
+// // document.querySelector('#dostuff').addEventListener('click', function(e) {
+// // 	ipcRenderer.send('dostuff', ['magick', 'my_new_folder'])
+// // })
 
-ipcRenderer.on('reply', (e, arg) => window.alert('reply:' + arg))
+// document.querySelector('#gotToTest').addEventListener('click', function(e) {
+// 	ipcRenderer.send('goToTest')
+// })
+
+// ipcRenderer.on('reply', (e, arg) => window.alert('reply:' + arg))
+
+document.querySelector('#sometesterlink').addEventListener('click', e => {
+	e.preventDefault()
+	ipcRenderer.send('updatelocals',  ['message', 'A message has arrived!', '404'])
+	// window.alert('you clicked!!')
+	return false
+})

@@ -1,0 +1,13 @@
+extends _layout.pug
+
+block content
+	div.card
+		h1 Preview maker
+		form(action="/" method="post")
+			label(for="id") Project name
+			input(name="id" type="text" value="" required)
+
+			label(for="embedcode") Embed code
+			textarea(name="embedcode" type="text" required)
+
+			input(type="submit" value="Make preview →").button.button__submit

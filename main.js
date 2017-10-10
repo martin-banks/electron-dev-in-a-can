@@ -6,6 +6,19 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+let locals = {
+  nav: [
+    { slug: '', icon: 'home', path: '/' },
+    { slug: 'New preview', icon: 'plus-square-o', path: '/new-embed' },
+    { slug: 'My previews', icon: 'history', path: '/preview-list' },
+  ],
+  options: ['first', 'second']
+}
+const pug = require('electron-pug')({pretty: true}, locals);
+// const pug = require('pug')
+
+
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,10 +35,11 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
+    // mainWindow.loadURL(`file://${__dirname}/views/home.pug`);
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
-    slashes: true
+    pathname: path.join(__dirname, 'views/home.pug'),
+    // slashes: true
   }))
 
   // Open the DevTools.
@@ -77,3 +91,20 @@ electron.ipcMain.on('dostuff', (e, args) => {
   reply(require(`./src/${args[0]}`)({ name: args[1] }))
 })
 
+electron.ipcMain.on('goToTest', (e, args) => {
+  mainWindow.loadURL(url.format({
+    // pathname: path.join(__dirname, 'test.html'),
+    pathname: pug.render(path.join(__dirname, 'test.html')),
+    protocol: 'file:',
+    slashes: true
+  }))
+})
+
+electron.ipcMain.on('updatelocals', (e, args) => {
+  locals[args[0]] = args[1]
+  mainWindow.loadURL(url.format({
+    protocol: 'file:',
+    pathname: path.join(__dirname, `views/${args[2]}.pug`),
+    // slashes: true
+  }))
+})

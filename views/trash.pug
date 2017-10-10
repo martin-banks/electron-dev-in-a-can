@@ -1,0 +1,16 @@
+extends _layout.pug
+
+block content
+	div.card
+		h1 In the trash
+		p Restore function coming soon
+		ul
+			each item in list
+				div.link.link__preview
+					a(href=`/versions/${item}`)
+						span= item
+					//- form(action="/deletePreview" method="post")
+					//- 	input(name="deleteThis" value=`${item}` type="hidden")
+					//- 	button(type="submit").button.button__delete
+
+
